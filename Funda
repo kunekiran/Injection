@@ -1,0 +1,56 @@
+Type of SQL Injection
+---------------------
+In Band
+Out of Band
+Blind SQLI
+
+
+
+
+SQLI Exploitation Technique
+--------------------------
+Error Based Exploitation
+Union Based Exploitation
+Boolean Based Exploitation
+Time-Based Delay Exploitation
+Out of Band Exploitation
+
+
+Authentication Page
+Search Fields
+Post Fields
+Get Fields
+HTTP Header
+Cookie
+
+
+Basic SQL Functions
+-------------------
+SELECT	- read data from the database based on search criteria
+INSERT	- insert new data into the database
+UPDATE	- update existing data based on given criteria
+DELETE	- delete existing data based on given criteria
+Order By	- used to sort the result-set in ascending or descending order
+Limit By	- the statement is used to retrieve records from one or more tables
+
+
+
+SQL Injection Characters
+------------------------
+Character String Indicators	 ‘ or “
+Multiple-line comment	/*….*/
+Addition, concatenate ( or space   in URL)	+
+Single-line comment	# or – -(hyphen hyphen)
+Double pipe (concatenate)	||
+Wildcard attribute indicator	 %
+Local variable	 @variable
+Global variable	 @@variable
+Time delay	 waitfor delay ’00:00:10’
+String instead of a number or vice versa	
+
+
+Database Fingerprinting
+-----------------------
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ”1” LIMIT 0,1′ at line 1	      ->       MySQL
+ORA-00933: SQL command not properly ended	       ->      Oracle
+Microsoft SQL Native Client error ‘80040e14’ Unclosed quotation mark after the character string	      ->       MS SQL
